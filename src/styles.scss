@@ -1,4 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
+html, body { 
+	height: 100%; 
+
+}
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@font-face {
+    font-family: 'permanent_markerregular';
+    src: url('assets/fonts/permanentmarker-regular-webfont.woff2') format('woff2'),
+         url('assets/fonts/permanentmarker-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
