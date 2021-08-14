@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../state/auth.service';
 
@@ -21,18 +22,20 @@ export class LoginComponent implements OnInit, OnDestroy {
     return this.loginForm.get('password') as FormControl;
   }
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
     this.loginForm = new FormGroup({
-      username: new FormControl(''),
-      password: new FormControl('')
+      username: new FormControl('', [Validators.required]),
+      password: new FormControl('', [Validators.required])
     })
   }
 
   login() {
     this.subscription.add(
-      this.authService.login(this.username.value).subscribe()
+      this.authService.login(this.username.value).subscribe(() => {
+        this.router.navigateByUrl('/dashboard')
+      })
     )
   }
 
