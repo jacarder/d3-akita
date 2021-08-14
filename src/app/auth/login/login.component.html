@@ -9,9 +9,9 @@
 	</mat-form-field>
 	<mat-form-field appearance="fill">
 		<mat-label>Password</mat-label>
-		<input [formControl]="password" matInput [type]="hide ? 'password' : 'text'">
-		<button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-		<mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+		<input [formControl]="password" matInput [type]="hidePassword ? 'password' : 'text'">
+		<button type="button" mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hidePassword">
+		<mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
 		</button>
 		<mat-error *ngIf="password?.errors?.required">
 			Required

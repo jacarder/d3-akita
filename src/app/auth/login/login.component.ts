@@ -12,7 +12,7 @@ import { AuthService } from '../state/auth.service';
 export class LoginComponent implements OnInit, OnDestroy {
 
   loginForm: FormGroup;
-  hide: boolean;
+  hidePassword: boolean = true;
   subscription: Subscription = new Subscription();
 
   get username() {
