@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { AuthService } from '../state/auth.service';
 
 @Component({
@@ -7,9 +8,18 @@ import { AuthService } from '../state/auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
   loginForm: FormGroup;
+  hide: boolean;
+  subscription: Subscription = new Subscription();
+
+  get username() {
+    return this.loginForm.get('username') as FormControl;
+  }
+  get password() {
+    return this.loginForm.get('password') as FormControl;
+  }
 
   constructor(private authService: AuthService) { }
 
@@ -21,7 +31,13 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    this.authService.updateUsername(this.loginForm.value.username)
+    this.subscription.add(
+      this.authService.login(this.username.value).subscribe()
+    )
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
 }
