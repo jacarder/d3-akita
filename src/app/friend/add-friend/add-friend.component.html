@@ -1,1 +1,29 @@
-<p>add-friend works!</p>
+<form [formGroup]="addFriendForm" (ngSubmit)="addFriend()">
+	<mat-form-field appearance="fill">
+		<mat-label>Name</mat-label>
+		<input matInput type="text" [formControl]="friendName">
+		<mat-error *ngIf="friendName?.errors?.required">
+			Required
+		</mat-error>		
+	</mat-form-field>
+	<mat-form-field appearance="fill">
+		<mat-label>Age</mat-label>
+		<input matInput type="number" [formControl]="friendAge">
+		<mat-error *ngIf="friendAge?.errors?.required">
+			Required
+		</mat-error>
+	</mat-form-field>
+	<mat-form-field appearance="fill">
+		<mat-label>Weight</mat-label>
+		<input matInput type="number" [formControl]="friendWeight">
+		<mat-error *ngIf="friendWeight?.errors?.required">
+			Required
+		</mat-error>
+	</mat-form-field>	
+	<mat-form-field appearance="fill">
+		<mat-label>Friends</mat-label>
+		<mat-select [formControl]="friendList" multiple>
+		  <mat-option *ngFor="let friend of friends$ | async" [value]="friend">{{friend.name}} - Age:" {{friend.age}}</mat-option>
+		</mat-select>
+	</mat-form-field>
+</form>
