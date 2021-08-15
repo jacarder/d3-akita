@@ -14,7 +14,7 @@ export class AgeWeightScatterGraphComponent implements OnInit, OnDestroy, AfterV
   private readonly margin = {top: 10, right: 30, bottom: 30, left: 60};
   private readonly width = 460 - this.margin.left - this.margin.right;
   private readonly height = 400 - this.margin.top - this.margin.bottom;
-  private subscriptions: Subscription = new Subscription();
+  private subscriptions = new Subscription();
   loading$ = this.friendQuery.selectLoading();
   friends$ = this.friendQuery.selectAll();
 
