@@ -13,3 +13,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     font-style: normal;
 
 }
+
+.loading-spinner-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 50%;
+}

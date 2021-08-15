@@ -1,1 +1,12 @@
-<p>dashboard works!</p>
+<ng-container *ngIf="!(loading$ | async); else loadingTemplate">
+	<ng-container *ngFor="let friend of friends$ | async">
+		{{friend.name}}
+		{{friend.age}}
+		{{friend.weight}}
+	</ng-container>	
+</ng-container>
+<ng-template #loadingTemplate>
+	<div class="loading-spinner-container">
+		<mat-progress-spinner mode="indeterminate" color="primary"></mat-progress-spinner>
+	</div>
+</ng-template>
