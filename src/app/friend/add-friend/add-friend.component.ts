@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import cuid from 'cuid';
+import { Friend } from '../state/friend.model';
 import { FriendQuery } from '../state/friend.query';
+import { FriendService } from '../state/friend.service';
 
 @Component({
   selector: 'add-friend',
@@ -24,19 +27,29 @@ export class AddFriendComponent implements OnInit {
     return this.addFriendForm.get('friendList') as FormControl;
   }
 
-  constructor(private friendQuery: FriendQuery) { }
+  constructor(private friendQuery: FriendQuery, private friendService: FriendService) { }
 
   ngOnInit(): void {
     this.addFriendForm = new FormGroup({
       friendName: new FormControl('', [Validators.required]),
       friendAge: new FormControl('', [Validators.required]),
       friendWeight: new FormControl('', [Validators.required]),
-      friendList: new FormControl(null, [Validators.required])
+      friendList: new FormControl([])
     })
   }
 
-  addFriend = () => {
+  getInputValidators = () => {}
 
+  addFriend = () => {
+    let friend: Friend = {
+      id: cuid(),
+      name: this.friendName.value,
+      age: this.friendAge.value,
+      weight: this.friendWeight.value,
+      friendList: this.friendList.value
+    }
+    this.friendService.add(friend)
+    this.addFriendForm.reset();
   }
 
 }
