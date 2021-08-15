@@ -7,15 +7,19 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-
-
+import { AgeWeightScatterGraphComponent } from './age-weight-scatter-graph/age-weight-scatter-graph.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
-    AddFriendComponent
+    AddFriendComponent,
+    //  graph declarations
+    AgeWeightScatterGraphComponent
   ],
   exports: [
-    AddFriendComponent
+    AddFriendComponent,
+    //  graph imports
+    AgeWeightScatterGraphComponent
   ],
   imports: [
     CommonModule,
@@ -24,7 +28,8 @@ import { MatSelectModule } from '@angular/material/select';
     MatInputModule,
     MatIconModule,
     MatButtonModule,
-    MatSelectModule  
+    MatSelectModule,
+    MatProgressSpinnerModule      
   ]
 })
 export class FriendModule { }
