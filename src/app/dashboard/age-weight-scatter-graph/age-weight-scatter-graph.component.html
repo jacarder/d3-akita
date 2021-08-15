@@ -1,0 +1,8 @@
+<ng-container *ngIf="!(loading$ | async); else loadingTemplate">
+	<div id="age_weight_graph"></div>
+</ng-container>
+<ng-template #loadingTemplate>
+	<div class="loading-spinner-container">
+		<mat-progress-spinner mode="indeterminate" color="primary"></mat-progress-spinner>
+	</div>
+</ng-template>

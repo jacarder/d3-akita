@@ -3,12 +3,14 @@ import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 import { DashboardRoutingModule } from './dashboard-routing.module';
+import { AgeWeightScatterGraphComponent } from './age-weight-scatter-graph/age-weight-scatter-graph.component';
 
 
 
 @NgModule({
   declarations: [
-    DashboardComponent
+    DashboardComponent,
+    AgeWeightScatterGraphComponent
   ],
   imports: [
     CommonModule,
