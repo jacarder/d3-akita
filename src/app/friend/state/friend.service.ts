@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { ID } from '@datorama/akita';
+import cuid from 'cuid';
 import { Observable, of } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 import { Friend } from './friend.model';
@@ -18,16 +19,19 @@ export class FriendService {
     //  Mock existing list of friends
     let friends: Friend[] = [
       {
+        id: cuid(),
         name: 'Bob',
         age: 29,
         weight: 200,
       },
       {
+        id: cuid(),
         name: 'Bob1',
         age: 30,
         weight: 210,
       },
       {
+        id: cuid(),
         name: 'Bob2',
         age: 40,
         weight: 180,

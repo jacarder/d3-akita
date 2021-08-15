@@ -23,6 +23,7 @@
     "@datorama/akita": "^6.2.3",
     "@datorama/akita-ng-entity-service": "^6.0.0",
     "@datorama/akita-ng-router-store": "^6.0.0",
+    "cuid": "^2.1.8",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
