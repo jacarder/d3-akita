@@ -17,26 +17,28 @@ export class FriendService {
   get(): Observable<Friend[]> {
     this.friendStore.setLoading(true);
     //  Mock existing list of friends
-    let friends: Friend[] = [
-      {
-        id: cuid(),
-        name: 'Bob',
-        age: 29,
-        weight: 200,
-      },
-      {
-        id: cuid(),
-        name: 'Bob1',
-        age: 30,
-        weight: 210,
-      },
-      {
-        id: cuid(),
-        name: 'Bob2',
-        age: 40,
-        weight: 180,
-      },
-    ]
+    let friend1: Friend = {
+      id: cuid(),
+      name: 'Bob',
+      age: 29,
+      weight: 200,
+      friendList: []
+    };
+    let friend2: Friend = {
+      id: cuid(),
+      name: 'Bob',
+      age: 30,
+      weight: 210,
+      friendList: [friend1]
+    };
+    let friend3: Friend = {
+      id: cuid(),
+      name: 'Bob',
+      age: 40,
+      weight: 180,
+      friendList: [friend1, friend2]
+    };            
+    let friends: Friend[] = [friend1, friend2, friend3];
     return of(friends).pipe(
       tap(
         (friends) => {

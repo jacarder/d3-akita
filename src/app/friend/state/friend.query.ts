@@ -9,4 +9,8 @@ export class FriendQuery extends QueryEntity<FriendState> {
     super(store);
   }
 
+  getFriends = () => {
+    
+  }
+
 }

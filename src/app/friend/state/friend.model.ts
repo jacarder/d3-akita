@@ -5,6 +5,7 @@ export interface Friend {
 	name: string;
 	age: number;
 	weight: number;
+  friendList: Friend[]
 }
 
 export const createFriend = (params: Partial<Friend>): Friend => {
@@ -13,6 +14,7 @@ export const createFriend = (params: Partial<Friend>): Friend => {
     name: '',
     age: null,
     weight: null,
+    friendList: [],
     ...params
   } as Friend;
 }
