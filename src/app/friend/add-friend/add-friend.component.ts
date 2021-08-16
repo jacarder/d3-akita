@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import cuid from 'cuid';
+import { FriendValidation } from '../models/friend.validation';
 import { Friend } from '../state/friend.model';
 import { FriendQuery } from '../state/friend.query';
 import { FriendService } from '../state/friend.service';
@@ -32,8 +33,16 @@ export class AddFriendComponent implements OnInit {
   ngOnInit(): void {
     this.addFriendForm = new FormGroup({
       friendName: new FormControl('', [Validators.required]),
-      friendAge: new FormControl('', [Validators.required]),
-      friendWeight: new FormControl('', [Validators.required]),
+      friendAge: new FormControl('', [
+        Validators.required, 
+        Validators.min(FriendValidation.MinMaxAge.MIN),
+        Validators.max(FriendValidation.MinMaxAge.MAX)
+      ]),
+      friendWeight: new FormControl('', [
+        Validators.required,
+        Validators.min(FriendValidation.MinMaxWeight.MIN),
+        Validators.max(FriendValidation.MinMaxWeight.MAX)
+      ]),
       friendList: new FormControl([])
     })
   }
@@ -41,15 +50,17 @@ export class AddFriendComponent implements OnInit {
   getInputValidators = () => {}
 
   addFriend = () => {
-    let friend: Friend = {
-      id: cuid(),
-      name: this.friendName.value,
-      age: this.friendAge.value,
-      weight: this.friendWeight.value,
-      friendList: this.friendList.value
+    if(this.addFriendForm.valid) {
+      let friend: Friend = {
+        id: cuid(),
+        name: this.friendName.value,
+        age: this.friendAge.value,
+        weight: this.friendWeight.value,
+        friendList: this.friendList.value
+      }
+      this.friendService.add(friend)
+      this.addFriendForm.reset();
     }
-    this.friendService.add(friend)
-    this.addFriendForm.reset();
   }
 
 }

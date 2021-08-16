@@ -11,14 +11,22 @@
 		<input matInput type="number" [formControl]="friendAge">
 		<mat-error *ngIf="friendAge?.errors?.required">
 			Required
-		</mat-error>
+		</mat-error>	
 	</mat-form-field>
 	<mat-form-field appearance="fill">
 		<mat-label>Weight</mat-label>
 		<input matInput type="number" [formControl]="friendWeight">
-		<mat-error *ngIf="friendWeight?.errors?.required">
-			Required
-		</mat-error>
+		<mat-error *ngIf="friendWeight?.errors as error">
+			<ng-container *ngIf="error.required">
+				Required
+			</ng-container>
+			<ng-container *ngIf="error.min">
+				Age must be greater than {{error.min.min}}
+			</ng-container>
+			<ng-container *ngIf="error.max">
+				Age must be less than {{error.max.max}}
+			</ng-container>
+		</mat-error>	
 	</mat-form-field>	
 	<mat-form-field appearance="fill">
 		<mat-label>Friends</mat-label>
