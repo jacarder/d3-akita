@@ -1,5 +1,5 @@
 <ng-container *ngIf="!(loading$ | async); else loadingTemplate">
-	<div id="age_weight_graph"></div>
+	<div id="{{graphName}}"></div>
 </ng-container>
 <ng-template #loadingTemplate>
 	<div class="loading-spinner-container">
