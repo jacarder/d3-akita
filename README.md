@@ -1,6 +1,6 @@
 # D3Akita AKA
 
-This is a sample of how [Akita]('https://datorama.github.io/akita/') and [D3.js](https://d3js.org/) can be used together.
+This is a sample of how [Akita](https://datorama.github.io/akita/) and [D3.js](https://d3js.org/) can be used together.
 
 I was tasked to incorporate NgRx, though I wanted to explore other solutions (Less boiler platey solutions). This is where I found Akita. With the help of the schematics to generate stores, I was able to utilize the stores with ease.
 
