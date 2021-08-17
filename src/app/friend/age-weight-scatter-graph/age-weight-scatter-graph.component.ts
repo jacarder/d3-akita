@@ -21,6 +21,7 @@ export class AgeWeightScatterGraphComponent implements OnInit, OnDestroy, AfterV
   private subscriptions = new Subscription();
   graphNameId = 'age_weight_graph'
   friendInfoId = 'friend_info'
+  scatterPlotId = 'scatterplot'
   loading$ = this.friendQuery.selectLoading();
   friends$ = this.friendQuery.selectAll();
 
@@ -160,7 +161,7 @@ export class AgeWeightScatterGraphComponent implements OnInit, OnDestroy, AfterV
 
     //  Create scatter plot container
     const scatter = svg.append("g")
-          .attr("id", "scatterplot")
+          .attr("id", this.scatterPlotId)
           .attr("clip-path", "url(#clip)");
     //  Have brush before scattor plots so we can hover over them for tool tips
     scatter.append("g")
