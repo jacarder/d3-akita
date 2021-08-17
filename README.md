@@ -1,4 +1,4 @@
-# D3Akita AKA
+# D3Akita
 
 This is a sample of how [Akita](https://datorama.github.io/akita/) and [D3.js](https://d3js.org/) can be used together.
 
