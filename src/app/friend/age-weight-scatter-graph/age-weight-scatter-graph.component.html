@@ -1,5 +1,6 @@
 <ng-container *ngIf="!(loading$ | async); else loadingTemplate">
-	<div id="{{graphName}}"></div>
+	<div id="{{graphNameId}}"></div>
+	<div id="{{friendInfoId}}"></div>
 </ng-container>
 <ng-template #loadingTemplate>
 	<div class="loading-spinner-container">
