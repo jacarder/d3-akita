@@ -6,6 +6,6 @@ export module FriendValidation {
 	
 	export enum MinMaxWeight {
 		MIN = 1,
-		MAX = 1500
+		MAX = 500
 	}
 }
