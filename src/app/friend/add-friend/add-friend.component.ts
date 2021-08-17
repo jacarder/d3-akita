@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import cuid from 'cuid';
 import { FriendValidation } from '../models/friend.validation';
 import { Friend } from '../state/friend.model';
@@ -28,7 +29,7 @@ export class AddFriendComponent implements OnInit {
     return this.addFriendForm.get('friendList') as FormControl;
   }
 
-  constructor(private friendQuery: FriendQuery, private friendService: FriendService) { }
+  constructor(private friendQuery: FriendQuery, private friendService: FriendService, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
     this.addFriendForm = new FormGroup({
@@ -47,8 +48,6 @@ export class AddFriendComponent implements OnInit {
     })
   }
 
-  getInputValidators = () => {}
-
   addFriend = () => {
     if(this.addFriendForm.valid) {
       let friend: Friend = {
@@ -60,6 +59,9 @@ export class AddFriendComponent implements OnInit {
       }
       this.friendService.add(friend)
       this.addFriendForm.reset();
+      this.snackBar.open('Fwend Added', 'Undo', {
+        duration: 3000
+      });      
     }
   }
 
