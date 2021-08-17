@@ -16,7 +16,7 @@ export class AgeWeightScatterGraphComponent implements OnInit, OnDestroy, AfterV
   private readonly margin = {top: 10, right: 30, bottom: 30, left: 60};
   private readonly width = 460 - this.margin.left - this.margin.right;
   private readonly height = 400 - this.margin.top - this.margin.bottom;
-  private readonly defaultColor = '#69b3a2';
+  private readonly defaultColor = 'black';
   private readonly defaultRadius = 4;
   private subscriptions = new Subscription();
   graphNameId = 'age_weight_graph'
@@ -177,7 +177,7 @@ export class AgeWeightScatterGraphComponent implements OnInit, OnDestroy, AfterV
               .attr("class", function (f) { return "dot " + f.id } ) // ID created to highlight friends
               .attr("cx", function (d) { return x(d.age); })
               .attr("cy", function (d) { return y(d.weight); })
-              .style("fill", "#4292c6")
+              .style("fill", this.defaultColor)
               
               .attr("pointer-events", "all")
               .on("mouseover", (event, f: Friend) => {
