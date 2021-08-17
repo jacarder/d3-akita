@@ -39,6 +39,6 @@
 			<mat-option *ngFor="let friend of friends$ | async" [value]="friend">{{friend.name}} - Age:" {{friend.age}}</mat-option>
 			</mat-select>
 		</mat-form-field>
-		<button mat-raised-button color="primary">Add Fwend</button>
+		<button mat-raised-button color="primary" class="add-friend-button">Add Fwend</button>
 	</form>
 </mat-card>
