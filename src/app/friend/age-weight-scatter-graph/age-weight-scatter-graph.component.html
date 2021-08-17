@@ -6,12 +6,13 @@
 	<ng-container *ngIf="!(loading$ | async); else loadingTemplate">
 		<div id="{{graphNameId}}"></div>
 		<mat-card>
-			<mat-grid-list cols="2">
+			<mat-grid-list cols="2" rowHeight="180px">
 				<mat-grid-tile>
-					<mat-grid-tile-header>Key</mat-grid-tile-header>
+					<mat-grid-tile-header>Tips</mat-grid-tile-header>
 					<ul>
 						<li>Hover over points to display friend info</li>
 						<li>Red dots show your friends other friends</li>
+						<li>Double click graph to reset</li>
 					</ul>
 				</mat-grid-tile>
 				<mat-grid-tile>

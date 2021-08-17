@@ -14,7 +14,7 @@ import { Friend } from '../state/friend.model';
 export class AgeWeightScatterGraphComponent implements OnInit, OnDestroy, AfterViewInit {
   // set the dimensions and margins of the graph
   private readonly margin = {top: 10, right: 30, bottom: 30, left: 60};
-  private readonly width = 460 - this.margin.left - this.margin.right;
+  private readonly width = 860 - this.margin.left - this.margin.right;
   private readonly height = 400 - this.margin.top - this.margin.bottom;
   private readonly defaultColor = 'black';
   private readonly defaultRadius = 4;
@@ -75,8 +75,8 @@ export class AgeWeightScatterGraphComponent implements OnInit, OnDestroy, AfterV
         var s = event.selection;
         if (!s) {
             if (!idleTimeout) return idleTimeout = setTimeout(idled, idleDelay);
-            x.domain([FriendValidation.MinMaxAge.MIN, FriendValidation.MinMaxAge.MAX]);
-            y.domain([FriendValidation.MinMaxWeight.MIN, FriendValidation.MinMaxWeight.MAX]);
+            x.domain([FriendValidation.MinMaxWeight.MIN, FriendValidation.MinMaxWeight.MAX]);
+            y.domain([FriendValidation.MinMaxAge.MIN, FriendValidation.MinMaxAge.MAX]);
         } else {
             x.domain([s[0][0], s[1][0]].map(x.invert, x));
             y.domain([s[1][1], s[0][1]].map(y.invert, y));
@@ -95,8 +95,8 @@ export class AgeWeightScatterGraphComponent implements OnInit, OnDestroy, AfterV
         svg.select("#axis--x").transition().duration(750).call(xAxis as any); //  TODO Typescript yelling if not any investigate more
         svg.select("#axis--y").transition().duration(750).call(yAxis as any); //  TODO Typescript yelling investigate more
         scatter.selectAll("circle").transition()
-        .attr("cx", function (d: any) { return x(d.age); })
-        .attr("cy", function (d: any) { return y(d.weight); })
+        .attr("cx", function (d: any) { return x(d.weight); }) // TODO some reason can't set d param as Friend
+        .attr("cy", function (d: any) { return y(d.age); }) // TODO some reason can't set d param as Friend
     }    
 
     //  Add tooltip to display information
@@ -129,8 +129,8 @@ export class AgeWeightScatterGraphComponent implements OnInit, OnDestroy, AfterV
         .attr("x", 0) 
         .attr("y", 0); 
 
-    x.domain([FriendValidation.MinMaxAge.MIN, FriendValidation.MinMaxAge.MAX]).range([ 0, this.width ]);
-    y.domain([FriendValidation.MinMaxWeight.MIN, FriendValidation.MinMaxWeight.MAX]).range([ this.height, 0]);
+    x.domain([FriendValidation.MinMaxWeight.MIN, FriendValidation.MinMaxWeight.MAX]).range([ 0, this.width ]);
+    y.domain([FriendValidation.MinMaxAge.MIN, FriendValidation.MinMaxAge.MAX]).range([ this.height, 0]);
 
     // x axis
     svg.append("g")
@@ -143,7 +143,7 @@ export class AgeWeightScatterGraphComponent implements OnInit, OnDestroy, AfterV
       .style("text-anchor", "end")
         .attr("x", this.width)
         .attr("y", this.height - 8)
-      .text("Age (Years)");
+      .text("Weight (Pounds)");
 
     // y axis
     svg.append("g")
@@ -156,7 +156,7 @@ export class AgeWeightScatterGraphComponent implements OnInit, OnDestroy, AfterV
         .attr("y", 6)
         .attr("dy", "1em")
         .style("text-anchor", "end")
-        .text("Weight (Pounds)");    
+        .text("Age (Years)");    
 
     //  Create scatter plot container
     const scatter = svg.append("g")
@@ -175,8 +175,8 @@ export class AgeWeightScatterGraphComponent implements OnInit, OnDestroy, AfterV
               .join("circle")
               .attr("r", this.defaultRadius)
               .attr("class", function (f) { return "dot " + f.id } ) // ID created to highlight friends
-              .attr("cx", function (d) { return x(d.age); })
-              .attr("cy", function (d) { return y(d.weight); })
+              .attr("cx", function (d) { return x(d.weight); })
+              .attr("cy", function (d) { return y(d.age); })
               .style("fill", this.defaultColor)
               
               .attr("pointer-events", "all")
