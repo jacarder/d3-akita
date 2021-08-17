@@ -1,9 +1,29 @@
-<ng-container *ngIf="!(loading$ | async); else loadingTemplate">
-	<div id="{{graphNameId}}"></div>
-	<div id="{{friendInfoId}}"></div>
-</ng-container>
-<ng-template #loadingTemplate>
-	<div class="loading-spinner-container">
-		<mat-progress-spinner mode="indeterminate" color="primary"></mat-progress-spinner>
-	</div>
-</ng-template>
+<mat-card>
+	<mat-card-header>
+		<mat-card-title>Fwends Scatterplot</mat-card-title>
+		<mat-card-subtitle>Age and Weight</mat-card-subtitle>
+	</mat-card-header>
+	<ng-container *ngIf="!(loading$ | async); else loadingTemplate">
+		<div id="{{graphNameId}}"></div>
+		<mat-card>
+			<mat-grid-list cols="2">
+				<mat-grid-tile>
+					<mat-grid-tile-header>Key</mat-grid-tile-header>
+					<ul>
+						<li>Hover over points to display friend info</li>
+						<li>Red dots show your friends of friends</li>
+					</ul>
+				</mat-grid-tile>
+				<mat-grid-tile>
+					<mat-grid-tile-header>Friend Info</mat-grid-tile-header>
+					<div id="{{friendInfoId}}"></div>
+				</mat-grid-tile>
+			</mat-grid-list>
+		</mat-card>
+	</ng-container>
+	<ng-template #loadingTemplate>
+		<div class="loading-spinner-container">
+			<mat-progress-spinner mode="indeterminate" color="primary"></mat-progress-spinner>
+		</div>
+	</ng-template>
+</mat-card>
