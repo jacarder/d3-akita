@@ -1,4 +1,7 @@
 <mat-card>
+	<mat-card-header>
+		<mat-card-title>Add a Fwend</mat-card-title>
+	</mat-card-header>
 	<form [formGroup]="addFriendForm" (ngSubmit)="addFriend()">
 		<mat-form-field appearance="fill">
 			<mat-label>Name</mat-label>
@@ -26,16 +29,16 @@
 				</ng-container>
 				<ng-container *ngIf="error.max">
 					Age must be less than {{error.max.max}}.
-					Please help your friend
+					Please help your fwend.
 				</ng-container>
 			</mat-error>	
 		</mat-form-field>	
 		<mat-form-field appearance="fill">
-			<mat-label>Friends</mat-label>
+			<mat-label>Fwends</mat-label>
 			<mat-select [formControl]="friendList" multiple>
 			<mat-option *ngFor="let friend of friends$ | async" [value]="friend">{{friend.name}} - Age:" {{friend.age}}</mat-option>
 			</mat-select>
 		</mat-form-field>
-		<button mat-raised-button color="primary">Add Friend</button>
+		<button mat-raised-button color="primary">Add Fwend</button>
 	</form>
 </mat-card>
