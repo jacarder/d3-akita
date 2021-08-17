@@ -1,0 +1,15 @@
+<ng-container *ngIf="isLoggedIn$ | async">
+	<mat-toolbar color="primary">
+		<!-- Add when ready for more pages
+		<button mat-icon-button>
+			<mat-icon>menu</mat-icon>
+		</button>
+		-->
+		<mat-icon style="margin-right: 5px">child_care</mat-icon>
+		<span>Fwends</span>
+		<span class="spacer"></span>
+		<button mat-icon-button (click)="logout()">
+			<mat-icon>logout</mat-icon>
+		</button>
+	</mat-toolbar>
+</ng-container>

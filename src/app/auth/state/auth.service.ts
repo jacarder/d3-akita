@@ -11,6 +11,7 @@ export class AuthService {
   }
 
   login(username: string) {
+    this.authStore.setLoading(true);
     let authState: AuthState = {
       username: username, 
       isLoggedIn: true
@@ -20,12 +21,35 @@ export class AuthService {
       take(1), // used to mock finite http call
       tap(() => {
         this.authStore.update(authState)
+        this.authStore.setLoading(false);
       }),
       catchError((error) => {
         this.authStore.setError(error)
+        this.authStore.setLoading(false);
         throw error;
       })
     )
   }
+
+  logout() {
+    this.authStore.setLoading(true);
+    let authState: AuthState = {
+      username: '', 
+      isLoggedIn: false
+    }
+    //  Placeholder for api call
+    return of('').pipe(
+      take(1), // used to mock finite http call
+      tap(() => {
+        this.authStore.update(authState)
+        this.authStore.setLoading(false);
+      }),
+      catchError((error) => {
+        this.authStore.setError(error)
+        this.authStore.setLoading(false);
+        throw error;
+      })
+    )
+  }  
 
 }

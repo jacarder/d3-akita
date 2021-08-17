@@ -17,6 +17,10 @@ export class AuthQuery extends Query<AuthState> {
   getUsername(): string {
     return this.getValue().username;
   }
+  
+  selectUserLoggedIn(): Observable<boolean> {
+    return this.select(state => state.isLoggedIn);
+  }
 
   isUserLoggedIn(): boolean {
     return this.getValue().isLoggedIn;
